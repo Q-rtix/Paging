@@ -1,5 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
-namespace Qrtix.Paging;
+﻿namespace Paging.Pagers;
 
 public interface IPager
 {

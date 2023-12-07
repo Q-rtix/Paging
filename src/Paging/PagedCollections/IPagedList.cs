@@ -1,5 +1,6 @@
-﻿// ReSharper disable once CheckNamespace
-namespace Qrtix.Paging;
+﻿using Paging.Pagers;
+
+namespace Paging.PagedCollections;
 
 public interface IPagedList<out T> : IPager, IReadOnlyList<T>
 {
@@ -22,4 +23,10 @@ public interface IPagedList<out T> : IPager, IReadOnlyList<T>
 	/// is greater than PageCount.
 	/// </value>
 	int LastItemOnPage { get; }
+	
+	///<summary>
+	/// Gets a copy of the pager of this paged list.
+	///</summary>
+	///<value>Gets a copy of the pager of this paged list.</value>
+	Pager Pager { get; }
 }
