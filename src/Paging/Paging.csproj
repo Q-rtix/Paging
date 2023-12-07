@@ -23,4 +23,16 @@
 		<PackageProjectUrl>https://github.com/users/Qrtix769/projects/1</PackageProjectUrl>
 	</PropertyGroup>
 
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+	  <DocumentationFile>bin\Debug\Paging.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	  <DocumentationFile>bin\Release\Paging.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
 </Project>
