@@ -31,7 +31,7 @@ jobs:
             2.0.x
 #          cache: true
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
         working-directory: ${{ env.PATH_PROJECT }}
       - name: Build
         run: dotnet build --no-restore --configuration Release
