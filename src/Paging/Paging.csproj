@@ -21,7 +21,6 @@
 		<PackageTags>Pagination PaginatedList PagedList List Pager Paged Paging</PackageTags>
 		<Copyright>Copyright (c) Carlos J. Ortiz. All rights reserved.</Copyright>
 		<PackageProjectUrl>https://github.com/users/Qrtix769/projects/1</PackageProjectUrl>
-		<PackageLicenseUrl>https://github.com/Qrtix769/Paging/blob/master/LICENSE</PackageLicenseUrl>
 	</PropertyGroup>
 
 </Project>
