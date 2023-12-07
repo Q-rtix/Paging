@@ -1,0 +1,41 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Paginated List CI
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+env:
+  PATH_PROJECT: PaginatedList
+  PATH_RELEASE: PaginatedList\bin\Release
+  PROJECT_NAME: PaginatedList.csproj
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.x
+            7.x
+            standard2.0
+            standard2.1
+          cache: true
+      - name: Restore dependencies
+        run: dotnet restore --locked-mode
+        working-directory: ${{ env.PATH_PROJECT }}
+      - name: Build
+        run: dotnet build --no-restore --configuration Debug
+        working-directory: ${{ env.PATH_PROJECT }}
+      #- name: Test
+      #  run: dotnet test --no-build --verbosity normal
+      #  working-directory: tests/DatabaseManager.EFCore.Tests
