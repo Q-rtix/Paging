@@ -10,8 +10,8 @@ on:
     branches: [ "master" ]
 
 env:
-  PATH_PROJECT: Paging
-  PATH_RELEASE: Paging\bin\Release
+  PATH_PROJECT: src\Paging
+  PATH_RELEASE: src\Paging\bin\Release
   PROJECT_NAME: Paging.csproj
 
 jobs:
