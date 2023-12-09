@@ -13,6 +13,7 @@ env:
   PATH_PROJECT: src\Paging
   PATH_RELEASE: src\Paging\bin\Release
   PROJECT_NAME: Paging.csproj
+  PATH_TEST: tests\PagingTests
 
 jobs:
   build:
@@ -35,9 +36,9 @@ jobs:
         run: dotnet build --no-restore --configuration Debug
         working-directory: ${{ env.PATH_PROJECT }}
   
-#  test:
-#    runs-on: windows-latest
-#    steps:
-#      - name: Test
-#        run: dotnet test --no-build --verbosity normal
-#        working-directory: tests/DatabaseManager.EFCore.Tests
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+        working-directory: ${{ env.PATH_TEST }}
