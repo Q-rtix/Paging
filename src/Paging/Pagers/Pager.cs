@@ -2,43 +2,7 @@
 
 public class Pager : IPager
 {
-	#region Constructors
-
-    public Pager(int pageNumber, int pageSize, int totalItemCount)
-    {
-        ParametersValidator(pageNumber, pageSize, totalItemCount);
-    
-        PageNumber = pageNumber;
-        PageSize = pageSize;
-        TotalItemCount = totalItemCount;
-    
-        PageCount = TotalItemCount > 0
-            ? (TotalItemCount + PageSize - 1) / PageSize
-            : 0;
-
-        var pageNumberIsValid = PageCount > 0 && PageNumber <= PageCount;
-
-        HasPreviousPage = pageNumberIsValid && PageNumber > 1;
-        HasNextPage = pageNumberIsValid && PageNumber < PageCount;
-        IsFirstPage = pageNumberIsValid && PageNumber == 1;
-        IsLastPage = pageNumberIsValid && PageNumber == PageCount;
-    }
-
-	public Pager(IPager source)
-	{
-		PageNumber = source.PageNumber;
-		PageSize = source.PageSize;
-		TotalItemCount = source.TotalItemCount;
-		PageCount = source.PageCount;
-		HasPreviousPage = source.HasPreviousPage;
-		HasNextPage = source.HasNextPage;
-		IsFirstPage = source.IsFirstPage;
-		IsLastPage = source.IsLastPage;
-	}
-
-	#endregion
-
-	#region IPager Properties implementation
+	#region IPager Properties
 
 	/// <summary>
 	/// Total number of datasets within the data-source.
@@ -112,6 +76,42 @@ public class Pager : IPager
 	/// </value>
 	public bool IsLastPage { get; }
 
+	#endregion
+	
+	#region Constructors
+
+    public Pager(int pageNumber, int pageSize, int totalItemCount)
+    {
+        ParametersValidator(pageNumber, pageSize, totalItemCount);
+    
+        PageNumber = pageNumber;
+        PageSize = pageSize;
+        TotalItemCount = totalItemCount;
+    
+        PageCount = TotalItemCount > 0
+            ? (TotalItemCount + PageSize - 1) / PageSize
+            : 0;
+
+        var pageNumberIsValid = PageCount > 0 && PageNumber <= PageCount;
+
+        HasPreviousPage = pageNumberIsValid && PageNumber > 1;
+        HasNextPage = pageNumberIsValid && PageNumber < PageCount;
+        IsFirstPage = pageNumberIsValid && PageNumber == 1;
+        IsLastPage = pageNumberIsValid && PageNumber == PageCount;
+    }
+
+	public Pager(IPager source)
+	{
+		PageNumber = source.PageNumber;
+		PageSize = source.PageSize;
+		TotalItemCount = source.TotalItemCount;
+		PageCount = source.PageCount;
+		HasPreviousPage = source.HasPreviousPage;
+		HasNextPage = source.HasNextPage;
+		IsFirstPage = source.IsFirstPage;
+		IsLastPage = source.IsLastPage;
+	}
+	
 	#endregion
 
 	#region Private methods
