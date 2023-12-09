@@ -16,9 +16,7 @@ env:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
@@ -36,6 +34,10 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Debug
         working-directory: ${{ env.PATH_PROJECT }}
-      #- name: Test
-      #  run: dotnet test --no-build --verbosity normal
-      #  working-directory: tests/DatabaseManager.EFCore.Tests
+  
+#  test:
+#    runs-on: windows-latest
+#    steps:
+#      - name: Test
+#        run: dotnet test --no-build --verbosity normal
+#        working-directory: tests/DatabaseManager.EFCore.Tests

@@ -4,36 +4,27 @@ public class Pager : IPager
 {
 	#region Constructors
 
-	protected internal Pager() { }
+    public Pager(int pageNumber, int pageSize, int totalItemCount)
+    {
+        ParametersValidator(pageNumber, pageSize, totalItemCount);
+    
+        PageNumber = pageNumber;
+        PageSize = pageSize;
+        TotalItemCount = totalItemCount;
+    
+        PageCount = TotalItemCount > 0
+            ? (TotalItemCount + PageSize - 1) / PageSize
+            : 0;
 
-	protected internal Pager(int pageNumber, int pageSize, int totalItemCount)
-	{
-		if (pageNumber < 1)
-			throw new ArgumentOutOfRangeException(nameof(pageNumber), $"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
+        var pageNumberIsValid = PageCount > 0 && PageNumber <= PageCount;
 
-		if (pageSize < 1)
-			throw new ArgumentOutOfRangeException(nameof(pageSize), $"pageSize = {pageSize}. PageSize cannot be less than 1.");
+        HasPreviousPage = pageNumberIsValid && PageNumber > 1;
+        HasNextPage = pageNumberIsValid && PageNumber < PageCount;
+        IsFirstPage = pageNumberIsValid && PageNumber == 1;
+        IsLastPage = pageNumberIsValid && PageNumber == PageCount;
+    }
 
-		if (totalItemCount < 0)
-			throw new ArgumentOutOfRangeException(nameof(totalItemCount), $"totalItemCount = {totalItemCount}. TotalItemCount cannot be less than 0.");
-		
-		PageNumber = pageNumber;
-		PageSize = pageSize;
-		TotalItemCount = totalItemCount;
-		
-		PageCount = TotalItemCount > 0
-			? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
-			: 0;
-
-		var pageNumberIsGood = PageCount > 0 && PageNumber <= PageCount;
-
-		HasPreviousPage = pageNumberIsGood && PageNumber > 1;
-		HasNextPage = pageNumberIsGood && PageNumber < PageCount;
-		IsFirstPage = pageNumberIsGood && PageNumber == 1;
-		IsLastPage = pageNumberIsGood && PageNumber == PageCount;
-	}
-
-	protected internal Pager(IPager source)
+	public Pager(IPager source)
 	{
 		PageNumber = source.PageNumber;
 		PageSize = source.PageSize;
@@ -47,16 +38,95 @@ public class Pager : IPager
 
 	#endregion
 
-	#region IPager implementation
+	#region IPager Properties implementation
 
+	/// <summary>
+	/// Total number of datasets within the data-source.
+	/// </summary>
+	/// <value>
+	/// Total number of datasets within the data-source.
+	/// </value>
 	public int PageCount { get; }
+	
+	/// <summary>
+	/// Total number of objects contained within the datasets.
+	/// </summary>
+	/// <value>
+	/// Total number of objects contained within the data-source.
+	/// </value>
 	public int TotalItemCount { get; }
+	
+	/// <summary>
+	/// One-based index of this subset within the data-source, zero if the data-source is empty.
+	/// </summary>
+	/// <value>
+	/// One-based index of this subset within the data-source, zero if the data-source is empty.
+	/// </value>
 	public int PageNumber { get; }
+	
+	/// <summary>
+	/// Maximum size any individual subset.
+	/// </summary>
+	/// <value>
+	/// Maximum size any individual subset.
+	/// </value>
 	public int PageSize { get; }
+	
+	/// <summary>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is NOT the first subset within the data-source.
+	/// </summary>
+	/// <value>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is NOT the first subset within the data-source.
+	/// </value>
 	public bool HasPreviousPage { get; }
+	
+	/// <summary>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is NOT the last subset within the data-source.
+	/// </summary>
+	/// <value>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is NOT the last subset within the data-source.
+	/// </value>
 	public bool HasNextPage { get; }
+	
+	/// <summary>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is the first subset within the data-source.
+	/// </summary>
+	/// <value>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is the first subset within the data-source.
+	/// </value>
 	public bool IsFirstPage { get; }
+	
+	/// <summary>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is the last subset within the data-source.
+	/// </summary>
+	/// <value>
+	/// Returns true if the data-source is not empty and PageNumber is less than or equal to PageCount and this
+	/// is the last subset within the data-source.
+	/// </value>
 	public bool IsLastPage { get; }
+
+	#endregion
+
+	#region Private methods
+
+	private static void ParametersValidator(int pageNumber, int pageSize, int totalItemCount)
+	{
+		if (pageNumber < 1)
+			throw new ArgumentOutOfRangeException(null, $"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
+
+		if (pageSize < 1)
+			throw new ArgumentOutOfRangeException(null, $"pageSize = {pageSize}. PageSize cannot be less than 1.");
+
+		if (totalItemCount < 0)
+			throw new ArgumentOutOfRangeException(null, $"totalItemCount = {totalItemCount}. TotalItemCount cannot be less than 0.");
+	}
 
 	#endregion
 }
