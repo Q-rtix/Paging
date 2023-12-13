@@ -3,13 +3,13 @@ using Paging.Pagers;
 
 namespace PagingTests.PagerTests;
 
-public class PagerParametersConstructorTests
+public class PagerConstructorsTests
 {
 	#region Happy Path
 
 	// Constructor initializes PageNumber, PageSize, TotalItemCount, PageCount, HasPreviousPage, HasNextPage, IsFirstPage, IsLastPage
 	[Fact]
-	public void Test_ParametersValid_CreatedSuccessfully()
+	public void ParamConstructor_ParametersValid_CreatedSuccessfully()
 	{
 		// Arrange
 		const int pageNumber = 1;
@@ -33,7 +33,7 @@ public class PagerParametersConstructorTests
 	
 	// PageCount is 0 and all other parameters are valid
 	[Fact]
-	public void Test_PageCountIsZero_CreatedSuccessfully()
+	public void ParamConstructor_PageCountIsZero_CreatedSuccessfully()
 	{
 		// Arrange
 		const int pageNumber = 1;
@@ -56,7 +56,7 @@ public class PagerParametersConstructorTests
 	
 	// TotalItemCount is 0 and all other parameters are valid
 	[Fact]
-	public void Test_TotalItemCountIsZeroAndOtherParametersAreValid_CreatedSuccessfully()
+	public void ParamConstructor_TotalItemCountIsZeroAndOtherParametersAreValid_CreatedSuccessfully()
 	{
 		// Arrange
 		const int pageNumber = 1;
@@ -76,6 +76,27 @@ public class PagerParametersConstructorTests
 		pager.IsFirstPage.Should().BeFalse();
 		pager.IsLastPage.Should().BeFalse();
 	}
+	
+	[Fact]
+	public void CopyConstructor_CopyConstructor_CreatedSuccessfully()
+	{
+		// Arrange
+		var pager = new Pager(1, 10, 100);
+		
+		// Act
+		var copy = new Pager(pager);
+		
+		// Assert
+		copy.Should().NotBeNull();
+		copy.PageNumber.Should().Be(pager.PageNumber);
+		copy.PageSize.Should().Be(pager.PageSize);
+		copy.TotalItemCount.Should().Be(pager.TotalItemCount);
+		copy.PageCount.Should().Be(pager.PageCount);
+		copy.HasPreviousPage.Should().Be(pager.HasPreviousPage);
+		copy.HasNextPage.Should().Be(pager.HasNextPage);
+		copy.IsFirstPage.Should().Be(pager.IsFirstPage);
+		copy.IsLastPage.Should().Be(pager.IsLastPage);
+	}
 
 	#endregion
 
@@ -83,7 +104,7 @@ public class PagerParametersConstructorTests
 
 	// PageNumber is less than 1
 	[Fact]
-	public void Test_PageNumberLessThan1_ThrowsArgumentOutOfRangeException()
+	public void ParamConstructor_PageNumberLessThan1_ThrowsArgumentOutOfRangeException()
 	{
 		// Arrange
 		const int pageNumber = -1;
@@ -99,7 +120,7 @@ public class PagerParametersConstructorTests
 
 	// PageSize is less than 1
 	[Fact]
-	public void Test_PageSizeLessThan1_ThrowsArgumentOutOfRangeException()
+	public void ParamConstructor_PageSizeLessThan1_ThrowsArgumentOutOfRangeException()
 	{
 		// Arrange
 		const int pageNumber = 2;
@@ -115,7 +136,7 @@ public class PagerParametersConstructorTests
 
 	// TotalItemCount is less than 0
 	[Fact]
-	public void Test_TotalItemCountLessThan0_ThrowsArgumentOutOfRangeException()
+	public void ParamConstructor_TotalItemCountLessThan0_ThrowsArgumentOutOfRangeException()
 	{
 		// Arrange
 		const int pageNumber = 2;
@@ -127,6 +148,19 @@ public class PagerParametersConstructorTests
 
 		act.Should().Throw<ArgumentOutOfRangeException>()
 			.WithMessage("totalItemCount = -1. TotalItemCount cannot be less than 0.");
+	}
+	
+	[Fact]
+	public void CopyConstructor_PagerNull_ThrowsNullReferenceException()
+	{
+		// Arrange
+		var pager = new Pager(1, 10, 100);
+		
+		// Act
+		Action act = () => new Pager(null);
+		
+		// Assert
+		act.Should().Throw<NullReferenceException>();
 	}
 
 	#endregion
