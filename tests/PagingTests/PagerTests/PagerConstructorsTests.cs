@@ -78,7 +78,7 @@ public class PagerConstructorsTests
 	}
 	
 	[Fact]
-	public void CopyConstructor_CopyConstructor_CreatedSuccessfully()
+	public void CopyConstructor_CreatedSuccessfully()
 	{
 		// Arrange
 		var pager = new Pager(1, 10, 100);
@@ -92,6 +92,27 @@ public class PagerConstructorsTests
 		copy.PageSize.Should().Be(pager.PageSize);
 		copy.TotalItemCount.Should().Be(pager.TotalItemCount);
 		copy.PageCount.Should().Be(pager.PageCount);
+		copy.HasPreviousPage.Should().Be(pager.HasPreviousPage);
+		copy.HasNextPage.Should().Be(pager.HasNextPage);
+		copy.IsFirstPage.Should().Be(pager.IsFirstPage);
+		copy.IsLastPage.Should().Be(pager.IsLastPage);
+	}
+	
+	[Fact]
+	public void CopyConstructor_WithNewTotalItemCount_CreatedSuccessfully()
+	{
+		// Arrange
+		var pager = new Pager(1, 10, 100);
+		
+		// Act
+		var copy = new Pager(pager, 50);
+		
+		// Assert
+		copy.Should().NotBeNull();
+		copy.PageNumber.Should().Be(pager.PageNumber);
+		copy.PageSize.Should().Be(pager.PageSize);
+		copy.TotalItemCount.Should().Be(50);
+		copy.PageCount.Should().Be(5);
 		copy.HasPreviousPage.Should().Be(pager.HasPreviousPage);
 		copy.HasNextPage.Should().Be(pager.HasNextPage);
 		copy.IsFirstPage.Should().Be(pager.IsFirstPage);
@@ -143,9 +164,10 @@ public class PagerConstructorsTests
 		const int pageSize = 10;
 		const int totalItemCount = -1;
 
-		// Act & Assert
+		// Act
 		Action act = () => new Pager(pageNumber, pageSize, totalItemCount);
 
+		// Assert
 		act.Should().Throw<ArgumentOutOfRangeException>()
 			.WithMessage("totalItemCount = -1. TotalItemCount cannot be less than 0.");
 	}
