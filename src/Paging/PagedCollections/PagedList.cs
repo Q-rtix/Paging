@@ -35,7 +35,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	}
     
     public PagedList(IQueryable<T> dataSource, IPager pager)
-		: base(pager)
+		: base(pager, dataSource?.Count() ?? 0)
 	{
 		if (dataSource == null)
 			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
@@ -46,7 +46,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
     }
 	
 	public PagedList(IEnumerable<T> dataSource, IPager pager)
-		: base(pager)
+		: base(pager, dataSource?.Count() ?? 0)
 	{
 		if (dataSource == null)
 			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
