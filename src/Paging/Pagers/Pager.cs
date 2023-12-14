@@ -100,16 +100,10 @@ public class Pager : IPager
         IsLastPage = pageNumberIsValid && PageNumber == PageCount;
     }
 
-	public Pager(IPager source)
+	public Pager(IPager source, int? newTotalItemCount = null)
+		: this(source.PageNumber, source.PageSize, newTotalItemCount ?? source.TotalItemCount)
 	{
-		PageNumber = source.PageNumber;
-		PageSize = source.PageSize;
-		TotalItemCount = source.TotalItemCount;
-		PageCount = source.PageCount;
-		HasPreviousPage = source.HasPreviousPage;
-		HasNextPage = source.HasNextPage;
-		IsFirstPage = source.IsFirstPage;
-		IsLastPage = source.IsLastPage;
+		
 	}
 	
 	#endregion

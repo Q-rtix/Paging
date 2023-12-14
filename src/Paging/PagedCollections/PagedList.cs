@@ -15,7 +15,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	public PagedList(IQueryable<T> dataSource, int pageNumber, int pageSize)
 		: base(pageNumber, pageSize, dataSource?.Count() ?? 0)
 	{
-		if (TotalItemCount < 0 || dataSource == null)
+		if (dataSource == null)
 			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
 
 		var skip = (pageNumber - 1) * pageSize;
@@ -37,7 +37,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
     public PagedList(IQueryable<T> dataSource, IPager pager)
 		: base(pager)
 	{
-		if (TotalItemCount <= 0 || dataSource == null)
+		if (dataSource == null)
 			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
 	
 		var skip = (PageNumber - 1) * PageSize;
@@ -48,7 +48,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	public PagedList(IEnumerable<T> dataSource, IPager pager)
 		: base(pager)
 	{
-		if (TotalItemCount <= 0 || dataSource == null)
+		if (dataSource == null)
 			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
 
 		var skip = (PageNumber - 1) * PageSize;
