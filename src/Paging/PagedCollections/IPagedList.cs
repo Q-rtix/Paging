@@ -11,10 +11,10 @@ public interface IPagedList<out T> : IPager, IReadOnlyList<T>
 	/// Returns true if this paged list is empty.
 	/// </value>
 	bool IsEmpty { get; }
-	
+
 	///<summary>
 	/// Gets a copy of the pager of this paged list.
 	///</summary>
-	///<value>Gets a copy of the pager of this paged list.</value>
-	Pager Pager { get; }
+	///<returns>A copy of the pager of this paged list.</returns>
+	Pager GetPagerData();
 }

@@ -26,7 +26,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	public PagedList(IEnumerable<T> dataSource, int pageNumber, int pageSize)
 		: base(pageNumber, pageSize, dataSource?.Count() ?? 0)
 	{
-		if (TotalItemCount <= 0 || dataSource == null)
+		if (dataSource == null)
 			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
 
 		var skip = (pageNumber - 1) * pageSize;
@@ -59,14 +59,15 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	#endregion
 
 	#region IPagedList Properties
-
-	public Pager Pager => new (this);
+	
 	public bool IsEmpty => TotalItemCount == 0;
 	public int Count => _dataset.Count;
 
 	#endregion
 
 	#region IPagedList implementation
+	
+	public Pager GetPagerData() => new (this);
 
 	IEnumerator IEnumerable.GetEnumerator()
 	{

@@ -1,8 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=63dc14db_002D7874_002D4fc3_002D9624_002D2c42832784d8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Constructor_Success" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::PagingTests.PagerTests.PagerParametersConstructorTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::PagingTests.PagerTests.PagerCopyConstructorTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::PagingTests.PagedCollectionsTests.PagedListTests.PagedListParametersConstructorTests.Test_UsingParametersValid_PagedListCreated&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::PagingTests.PagedCollectionsTests.PagedListTests.PagedListConstructorsTests.ParamConstructor_WhenDataSourceIsNull_ThrowsArgumentNullException&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
