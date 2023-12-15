@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DCA445CD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paging", "src\Paging\Paging.csproj", "{C85597B6-A4C7-4E0C-854B-66FD5F27F33B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagingTests", "tests\PagingTests\PagingTests.csproj", "{A77C3D96-BA31-4032-B7E6-008EADFD9280}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paging.Tests", "tests\Paging.Tests\Paging.Tests.csproj", "{A77C3D96-BA31-4032-B7E6-008EADFD9280}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

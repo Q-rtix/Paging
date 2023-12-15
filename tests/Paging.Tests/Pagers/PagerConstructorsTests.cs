@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Paging.Pagers;
 
-namespace PagingTests.PagerTests;
+namespace Paging.Tests.Pagers;
 
 public class PagerConstructorsTests
 {
@@ -13,7 +13,7 @@ public class PagerConstructorsTests
 	{
 		// Arrange
 		const int pageNumber = 1;
-		const int pageSize = 10;
+		const int pageSize = 10; 
 		const int totalItemCount = 100;
 		
 		// Act

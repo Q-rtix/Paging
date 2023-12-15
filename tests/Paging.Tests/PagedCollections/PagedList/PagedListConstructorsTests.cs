@@ -2,7 +2,7 @@
 using Paging.PagedCollections;
 using Paging.Pagers;
 
-namespace PagingTests.PagedCollectionsTests.PagedListTests;
+namespace Paging.Tests.PagedCollections.PagedList;
 
 public class PagedListConstructorsTests
 {
