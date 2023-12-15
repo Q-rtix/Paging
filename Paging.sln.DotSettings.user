@@ -5,5 +5,6 @@
     &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.Pagers.PagerGoToPageTests.GoToPage_CurrentPageNumberIsOne_PageNumberInValidRange_ChangePageNumberSuccessfully&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.Pagers.PagerGoToPageTests.GoToPage_CurrentPageNumberIsOne_PageNumberOnInvalidRange_ChangePageNumberSuccessfully&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.PagedListConstructorsTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.Extensions.PagedList.PaginatedWithPagerTests.Paginated&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
