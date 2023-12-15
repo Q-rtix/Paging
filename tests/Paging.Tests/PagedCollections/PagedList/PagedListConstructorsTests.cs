@@ -121,6 +121,26 @@ public class PagedListConstructorsTests
 		emptyPagedList.IsFirstPage.Should().BeFalse();
 		emptyPagedList.IsLastPage.Should().BeFalse();
 	}
+	
+	[Fact]
+	public void EmptyCopyConstructor_EmptyPagedListCreated()
+	{
+		// Act
+		var emptyPagedList = PagedList<int>.Empty(Lab.DataSources.Pagers.PageNumberFirst);
+		
+		// Assert
+		emptyPagedList.Should().NotBeNull();
+		emptyPagedList.Count.Should().Be(0);
+		emptyPagedList.IsEmpty.Should().BeTrue();
+		emptyPagedList.PageNumber.Should().Be(1);
+		emptyPagedList.PageSize.Should().Be(Lab.DataSources.Pagers.PageNumberFirst.PageSize);
+		emptyPagedList.TotalItemCount.Should().Be(0);
+		emptyPagedList.PageCount.Should().Be(0);
+		emptyPagedList.HasPreviousPage.Should().BeFalse();
+		emptyPagedList.HasNextPage.Should().BeFalse();
+		emptyPagedList.IsFirstPage.Should().BeFalse();
+		emptyPagedList.IsLastPage.Should().BeFalse();
+	}
 
 	#endregion
 
@@ -138,7 +158,7 @@ public class PagedListConstructorsTests
 		
 		// Assert
 		act.Should().Throw<ArgumentNullException>()
-			.WithMessage("source cannot be null. (Parameter 'dataSource')");
+			.WithMessage("dataSource cannot be null. (Parameter 'dataSource')");
 	}
 	
 	[Fact]
@@ -152,7 +172,7 @@ public class PagedListConstructorsTests
 		
 		// Assert
 		act.Should().Throw<ArgumentNullException>()
-			.WithMessage("source cannot be null. (Parameter 'dataSource')");
+			.WithMessage("dataSource cannot be null. (Parameter 'dataSource')");
 	}
 
 	#endregion

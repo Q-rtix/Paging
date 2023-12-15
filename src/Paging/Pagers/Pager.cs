@@ -7,6 +7,14 @@ public class Pager : IPager
 {
 	#region Constructors
 
+	/// <summary>
+	/// Initializes a new instance of the Pager class with the provided parameters.
+	/// Calculates page-related attributes such as total page count and sets flags indicating the presence of previous,
+	/// next, first, and last pages based on the provided page number, page size, and total item count.
+	/// </summary>
+	/// <param name="pageNumber">The current page number.</param>
+	/// <param name="pageSize">The number of items per page.</param>
+	/// <param name="totalItemCount">The total number of items across all pages.</param>
     public Pager(int pageNumber, int pageSize, int totalItemCount)
     {
         ParametersValidator(pageNumber, pageSize, totalItemCount);
@@ -27,6 +35,15 @@ public class Pager : IPager
         IsLastPage = pageNumberIsValid && PageNumber == PageCount;
     }
 
+	/// <summary>
+	/// Initializes a new instance of the Pager class based on an existing pager instance with an optional update to the total item count.
+	/// Constructs a new pager with the same page number, page size, and either the provided new total item count or the total item count of the source pager.
+	/// </summary>
+	/// <param name="source">The existing pager to create a new instance from.</param>
+	/// <param name="newTotalItemCount">
+	/// The optional new total item count. If provided, updates the total item count;
+	/// otherwise, uses the total item count from the source pager.
+	/// </param>
 	public Pager(IPager source, int? newTotalItemCount = null)
 		: this(source.PageNumber, source.PageSize, newTotalItemCount ?? source.TotalItemCount)
 	{

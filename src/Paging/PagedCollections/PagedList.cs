@@ -5,69 +5,41 @@ namespace Paging.PagedCollections;
 
 public sealed class PagedList<T> : Pager, IPagedList<T>
 {
-	private readonly List<T> _dataset;
-	
+	private readonly List<T> _dataset = [];
+
 	#region Constructors
 
 	public static PagedList<T> Empty(int pageSize = 10)
 		=> new(Array.Empty<T>(), 1, pageSize);
 
-	public PagedList(IQueryable<T> dataSource, int pageNumber, int pageSize)
-		: base(pageNumber, pageSize, dataSource?.Count() ?? 0)
-	{
-		if (dataSource == null)
-			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
+	public static PagedList<T> Empty(IPager pager)
+		=> new(Array.Empty<T>(), pager);
 
-		var skip = (pageNumber - 1) * pageSize;
-		_dataset = new List<T>();
-		_dataset.AddRange(dataSource.Skip(skip).Take(pageSize));
-	}
-	
 	public PagedList(IEnumerable<T> dataSource, int pageNumber, int pageSize)
 		: base(pageNumber, pageSize, dataSource?.Count() ?? 0)
-	{
-		if (dataSource == null)
-			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
+			=> GetPage(
+				dataSource ?? throw new ArgumentNullException(nameof(dataSource), "dataSource cannot be null."),
+				pageNumber,
+				pageSize
+			);
 
-		var skip = (pageNumber - 1) * pageSize;
-		_dataset = new List<T>();
-		_dataset.AddRange(dataSource.Skip(skip).Take(pageSize));
-	}
-    
-    public PagedList(IQueryable<T> dataSource, IPager pager)
-		: base(pager, dataSource?.Count() ?? 0)
-	{
-		if (dataSource == null)
-			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
-	
-		var skip = (PageNumber - 1) * PageSize;
-		_dataset = new List<T>();
-		_dataset.AddRange(dataSource.Skip(skip).Take(PageSize));
-    }
-	
 	public PagedList(IEnumerable<T> dataSource, IPager pager)
-		: base(pager, dataSource?.Count() ?? 0)
+		: this(dataSource, pager.PageNumber, pager.PageSize)
 	{
-		if (dataSource == null)
-			throw new ArgumentNullException(nameof(dataSource), "source cannot be null.");
-
-		var skip = (PageNumber - 1) * PageSize;
-		_dataset = new List<T>();
-		_dataset.AddRange(dataSource.Skip(skip).Take(PageSize));
 	}
 
 	#endregion
 
 	#region IPagedList Properties
-	
+
 	public bool IsEmpty => TotalItemCount == 0;
 	public int Count => _dataset.Count;
 
 	#endregion
 
 	#region IPagedList implementation
-	
-	public Pager GetPagerData() => new (this);
+
+	public Pager GetPagerData() => new(this);
 
 	IEnumerator IEnumerable.GetEnumerator()
 	{
@@ -82,5 +54,14 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	public T this[int index] => _dataset[index];
 
 	#endregion
-	
+
+	#region Private Methods
+
+	private void GetPage(IEnumerable<T> dataSource, int pageNumber, int pageSize)
+	{
+		var skip = (pageNumber - 1) * pageSize;
+		_dataset.AddRange(dataSource.Skip(skip).Take(pageSize));
+	}
+
+	#endregion
 }
