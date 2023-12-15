@@ -6,29 +6,25 @@ namespace Paging.Tests.PagedCollections.PagedList;
 
 public class PagedListConstructorsTests
 {
-	private readonly Pager _pager = new(1, 10, 50);
-	private readonly List<int> _validList =
-	[
-		1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-		25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
-	];
-	private readonly List<int> _emptyList = [];
-
 	#region Happy Paths
 
 	[Fact]
 	public void ParamConstructor_UsingParametersValid_PagedListCreated()
 	{
+		// Arrange
+		var list = Lab.DataSources.IntegerLists.Items50;
+		var pager = Lab.DataSources.Pagers.PageNumberFirst;
+		
 		// Act 
-		var pagedList = new PagedList<int>(_validList, _pager.PageNumber, _pager.PageSize);
+		var pagedList = new PagedList<int>(list, pager.PageNumber, pager.PageSize);
 		
 		// Assert
 		pagedList.Should().NotBeNull();
 		pagedList.IsEmpty.Should().BeFalse();
-		pagedList.PageNumber.Should().Be(_pager.PageNumber);
-		pagedList.PageSize.Should().Be(_pager.PageSize);
-		pagedList.TotalItemCount.Should().Be(_pager.TotalItemCount);
-		pagedList.PageCount.Should().Be(_pager.PageCount);
+		pagedList.PageNumber.Should().Be(pager.PageNumber);
+		pagedList.PageSize.Should().Be(pager.PageSize);
+		pagedList.TotalItemCount.Should().Be(pager.TotalItemCount);
+		pagedList.PageCount.Should().Be(pager.PageCount);
 		pagedList.HasPreviousPage.Should().BeFalse();
 		pagedList.HasNextPage.Should().BeTrue();
 		pagedList.IsFirstPage.Should().BeTrue();
@@ -38,15 +34,19 @@ public class PagedListConstructorsTests
 	[Fact]
 	public void ParamConstructor_NonNullButEmptyDataSource_EmptyPagedListCreated()
 	{
+		// Arrange
+		var emptyList = Lab.DataSources.IntegerLists.Empty;
+		var pager = Lab.DataSources.Pagers.PageNumberFirst;
+		
 		// Act
-		var pagedList = new PagedList<int>(_emptyList, _pager.PageNumber, _pager.PageSize);
+		var pagedList = new PagedList<int>(emptyList, pager.PageNumber, pager.PageSize);
 
 		// Assert
 		pagedList.Should().NotBeNull();
 		pagedList.Count.Should().Be(0);
 		pagedList.IsEmpty.Should().BeTrue();
-		pagedList.PageNumber.Should().Be(_pager.PageNumber);
-		pagedList.PageSize.Should().Be(_pager.PageSize);
+		pagedList.PageNumber.Should().Be(pager.PageNumber);
+		pagedList.PageSize.Should().Be(pager.PageSize);
 		pagedList.TotalItemCount.Should().Be(0);
 		pagedList.PageCount.Should().Be(0);
 		pagedList.HasPreviousPage.Should().BeFalse();
@@ -58,16 +58,20 @@ public class PagedListConstructorsTests
 	[Fact]
 	public void ParamConstructor_UsingPagerValid_PagedListCreated()
 	{
+		// Arrange
+		var pager = Lab.DataSources.Pagers.PageNumberFirst;
+		var list = Lab.DataSources.IntegerLists.Items50;
+		
 		// Act
-		var pagedList = new PagedList<int>(_validList, _pager);
+		var pagedList = new PagedList<int>(list, pager);
 		
 		// Assert
 		pagedList.Should().NotBeNull();
 		pagedList.IsEmpty.Should().BeFalse();
-		pagedList.PageNumber.Should().Be(_pager.PageNumber);
-		pagedList.PageSize.Should().Be(_pager.PageSize);
-		pagedList.TotalItemCount.Should().Be(_pager.TotalItemCount);
-		pagedList.PageCount.Should().Be(_pager.PageCount);
+		pagedList.PageNumber.Should().Be(pager.PageNumber);
+		pagedList.PageSize.Should().Be(pager.PageSize);
+		pagedList.TotalItemCount.Should().Be(pager.TotalItemCount);
+		pagedList.PageCount.Should().Be(pager.PageCount);
 		pagedList.HasPreviousPage.Should().BeFalse();
 		pagedList.HasNextPage.Should().BeTrue();
 		pagedList.IsFirstPage.Should().BeTrue();
@@ -77,15 +81,19 @@ public class PagedListConstructorsTests
 	[Fact]
 	public void ParamConstructor_NonNullButEmptyDataSourceAndPagerValid_EmptyPagedListCreated()
 	{
+		// Arrange
+		var emptyList = Lab.DataSources.IntegerLists.Empty;
+		var pager = Lab.DataSources.Pagers.PageNumberFirst;
+		
 		// Act
-		var pagedList = new PagedList<int>(_emptyList, _pager);
+		var pagedList = new PagedList<int>(emptyList, pager);
 
 		// Assert
 		pagedList.Should().NotBeNull();
 		pagedList.Count.Should().Be(0);
 		pagedList.IsEmpty.Should().BeTrue();
-		pagedList.PageNumber.Should().Be(_pager.PageNumber);
-		pagedList.PageSize.Should().Be(_pager.PageSize);
+		pagedList.PageNumber.Should().Be(pager.PageNumber);
+		pagedList.PageSize.Should().Be(pager.PageSize);
 		pagedList.TotalItemCount.Should().Be(0);
 		pagedList.PageCount.Should().Be(0);
 		pagedList.HasPreviousPage.Should().BeFalse();
@@ -123,9 +131,10 @@ public class PagedListConstructorsTests
 	{
 		// Arrange
 		List<int>? dataSource = null;
+		var pager = Lab.DataSources.Pagers.PageNumberFirst;
 
 		// Act
-		Action act = () => new PagedList<int>(dataSource, _pager.PageNumber, _pager.PageSize);
+		Action act = () => new PagedList<int>(dataSource, pager.PageNumber, pager.PageSize);
 		
 		// Assert
 		act.Should().Throw<ArgumentNullException>()
@@ -139,7 +148,7 @@ public class PagedListConstructorsTests
 		List<int>? dataSource = null;
 
 		// Act
-		Action act = () => new PagedList<int>(dataSource, _pager);
+		Action act = () => new PagedList<int>(dataSource, Lab.DataSources.Pagers.PageNumberFirst);
 		
 		// Assert
 		act.Should().Throw<ArgumentNullException>()
