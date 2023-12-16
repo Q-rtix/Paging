@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>net8.0<!--;net7.0;netstandard2.0;netstandard2.1--></TargetFrameworks>
 		<LangVersion>default</LangVersion>
 		<SignAssembly>true</SignAssembly>
 		
@@ -12,6 +12,11 @@
 
 	<ItemGroup>
 	  <PackageReference Include="BenchmarkDotNet" Version="0.13.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\Paging\Paging.csproj" />
+	  <ProjectReference Include="..\..\tests\Paging.Tests\Paging.Tests.csproj" />
 	</ItemGroup>
 
 </Project>
