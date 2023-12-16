@@ -4,8 +4,11 @@
     &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.ThisIndexTests.DirectIndexing_WithValidIndexes_ReturnsTheItemIndexed&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b91bd91e_002D61e7_002D4eb5_002Da1b8_002D56feec3ed4ff/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DirectIndexing" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9289fc44_002Dfdcd_002D40ce_002D8166_002D931170756334/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ConstructorsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.ConstructorsTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.GetPagerDataTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.ThisIndexTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	</wpf:ResourceDictionary>

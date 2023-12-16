@@ -4,7 +4,7 @@ using Paging.Pagers;
 
 namespace Paging.Tests.PagedCollections.PagedList;
 
-public class PagedListConstructorsTests
+public class ConstructorsTests
 {
 	#region Happy Paths
 

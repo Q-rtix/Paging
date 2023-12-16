@@ -9,7 +9,8 @@ namespace Paging.PagedCollections;
 /// <typeparam name="T">The type of items in the paged list.</typeparam>
 public sealed class PagedList<T> : Pager, IPagedList<T>
 {
-	private readonly List<T> _dataset = [];
+	private readonly T[] _dataset;
+	private int _version = 0;
 
 	#region Constructors
 
@@ -42,11 +43,12 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	/// <exception cref="ArgumentNullException">Thrown when the <paramref name="dataSource"/> is null.</exception>
 	public PagedList(IEnumerable<T> dataSource, int pageNumber, int pageSize)
 		: base(pageNumber, pageSize, dataSource?.Count() ?? 0)
-			=> GetPage(
-				dataSource ?? throw new ArgumentNullException(nameof(dataSource), "dataSource cannot be null."),
-				pageNumber,
-				pageSize
-			);
+	{
+		if (dataSource == null) throw new ArgumentNullException(nameof(dataSource), "dataSource cannot be null.");
+		var skip = (pageNumber - 1) * pageSize;
+
+		_dataset = dataSource.Skip(skip).Take(pageSize).ToArray();
+	}
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class with the provided
@@ -70,17 +72,17 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	/// </summary>
 	/// <value>True if the <see cref="T:Paging.PagedCollections.PagedList`1" /> has no items; otherwise, false.</value>
 	public bool IsEmpty => TotalItemCount == 0;
-	
+
 	/// <summary>
 	/// Gets the count of items in the current page of the <see cref="T:Paging.PagedCollections.PagedList`1" />.
 	/// </summary>
 	/// <value>The number of elements contained in the <see cref="T:Paging.PagedCollections.PagedList`1" />.</value>
-	public int Count => _dataset.Count;
+	public int Count => _dataset.Length;
 
 	#endregion
 
 	#region IPagedList implementation
-	
+
 	/// <summary>
 	/// Retrieves a copied data from the current <see cref="T:Paging.PagedCollections.PagedList`1" />.
 	/// </summary>
@@ -102,7 +104,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	/// <returns>A <see cref="T:System.Collections.Generic.List`1.Enumerator" /> for the <see cref="T:Paging.PagedCollections.PagedList`1" />.</returns>
 	public IEnumerator<T> GetEnumerator()
 	{
-		return _dataset.GetEnumerator();
+		return new Enumerator(this);
 	}
 
 	/// <summary>
@@ -114,12 +116,83 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 
 	#endregion
 
-	#region Private Methods
+	#region Enumerator
 
-	private void GetPage(IEnumerable<T> dataSource, int pageNumber, int pageSize)
+	/// <summary>Enumerates the elements of a <see cref="T:Paging.PagedCollections.PagedList`1"/>.</summary>
+	public struct Enumerator : IEnumerator<T>
 	{
-		var skip = (pageNumber - 1) * pageSize;
-		_dataset.AddRange(dataSource.Skip(skip).Take(pageSize));
+#nullable disable
+		private readonly PagedList<T> _list;
+		private int _index;
+		private readonly int _version;
+
+		internal Enumerator(PagedList<T> list)
+		{
+			_list = list;
+			_index = 0;
+			_version = list._version;
+			Current = default(T);
+		}
+
+		/// <summary>Releases all resources used by the <see cref="T:Paging.PagedCollections.PagedList`1.Enumerator" />.</summary>
+		public void Dispose()
+		{
+		}
+
+		/// <summary>Advances the enumerator to the next element of the <see cref="T:System.Collections.Generic.List`1" />.</summary>
+		/// <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created.</exception>
+		/// <returns>
+		/// <see langword="true" /> if the enumerator was successfully advanced to the next element; <see langword="false" /> if the enumerator has passed the end of the collection.</returns>
+		public bool MoveNext()
+		{
+			var list = _list;
+
+			if (_version != list._version || (uint)_index >= (uint)list.PageCount)
+				return MoveNextRare();
+
+			Current = list._dataset[_index];
+			++_index;
+			return true;
+		}
+
+		private bool MoveNextRare()
+		{
+			if (_version != _list._version)
+				throw new InvalidOperationException("Invalid Operation Enumerator Failed Version");
+
+			_index = _list.PageCount + 1;
+			Current = default;
+			return false;
+		}
+
+#nullable enable
+		/// <summary>Gets the element at the current position of the enumerator.</summary>
+		/// <returns>The element in the <see cref="T:Paging.PagedCollections.PagedList`1" /> at the current position of the enumerator.</returns>
+		public T Current { get; private set; }
+
+		/// <summary>Gets the element at the current position of the enumerator.</summary>
+		/// <exception cref="T:System.InvalidOperationException">The enumerator is positioned before the first element of the collection or after the last element.</exception>
+		/// <returns>The element in the <see cref="T:Paging.PagedCollections.PagedList`1" /> at the current position of the enumerator.</returns>
+		object? IEnumerator.Current
+		{
+			get
+			{
+				if (_index == 0 || _index == _list.PageCount + 1)
+					throw new InvalidOperationException("Invalid Operation Enumerator Operation Can't Happen");
+				return Current;
+			}
+		}
+
+		/// <summary>Sets the enumerator to its initial position, which is before the first element in the collection.</summary>
+		/// <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created.</exception>
+		void IEnumerator.Reset()
+		{
+			if (_version != _list._version)
+				throw new InvalidOperationException("Invalid Operation Enumerator Failed Version");
+
+			_index = 0;
+			Current = default;
+		}
 	}
 
 	#endregion

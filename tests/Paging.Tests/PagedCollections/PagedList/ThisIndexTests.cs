@@ -34,7 +34,7 @@ public class ThisIndexTests
 		};
 		
 		// Assert
-		act.Should().Throw<ArgumentOutOfRangeException>();
+		act.Should().Throw<IndexOutOfRangeException>();
 	}
 
 	public static IEnumerable<object[]> ValidIndexes => new List<object[]>
