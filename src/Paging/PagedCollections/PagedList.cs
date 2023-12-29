@@ -65,6 +65,14 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	{
 	}
 
+	[JsonConstructor]
+	private PagedList(T[] Items, int PageNumber, int PageSize, int TotalItemCount,
+		bool IsEmpty, int Count, int PageCount, bool HasPreviousPage, bool HasNextPage, bool IsFirstPage, bool IsLastPage)
+		: base(PageNumber, PageSize, TotalItemCount)
+	{
+		_dataset = Items ?? throw new ArgumentNullException(nameof(Items), "Items cannot be null");
+	}
+
 	#endregion
 
 	#region IPagedList Properties
