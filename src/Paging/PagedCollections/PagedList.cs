@@ -66,11 +66,10 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	}
 
 	[JsonConstructor]
-	private PagedList(T[] Items, int PageNumber, int PageSize, int TotalItemCount,
-		bool IsEmpty, int Count, int PageCount, bool HasPreviousPage, bool HasNextPage, bool IsFirstPage, bool IsLastPage)
-		: base(PageNumber, PageSize, TotalItemCount)
+	private PagedList(T[] _dataset, int pageNumber, int pageSize, int totalItemCount)
+		: base(pageNumber, pageSize, totalItemCount)
 	{
-		_dataset = Items ?? throw new ArgumentNullException(nameof(Items), "Items cannot be null");
+		this._dataset = _dataset ?? throw new ArgumentNullException(nameof(_dataset), "The item list cannot be null");
 	}
 
 	#endregion

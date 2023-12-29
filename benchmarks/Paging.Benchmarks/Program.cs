@@ -17,3 +17,19 @@ Console.WriteLine(JsonSerializer.Serialize(list));
 Console.WriteLine(json);
 
 var fromJson = JsonSerializer.Deserialize<PagedList<int>>(json);
+
+Console.WriteLine(fromJson.PageCount);
+Console.WriteLine(fromJson.Count);
+Console.WriteLine(fromJson.PageNumber);
+Console.WriteLine(fromJson.IsEmpty);
+Console.WriteLine(fromJson.PageSize);
+Console.WriteLine(fromJson.HasNextPage);
+Console.WriteLine(fromJson.HasPreviousPage);
+Console.WriteLine(fromJson.IsFirstPage);
+Console.WriteLine(fromJson.IsLastPage);
+Console.WriteLine(fromJson.TotalItemCount);
+
+foreach (var item in fromJson)
+{
+	Console.WriteLine(item);
+}
