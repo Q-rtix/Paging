@@ -11,6 +11,7 @@ namespace Paging.PagedCollections;
 public sealed class PagedList<T> : Pager, IPagedList<T>
 {
 	[JsonInclude]
+	[JsonPropertyName("Items")]
 	private readonly T[] _dataset;
 
 	#region Constructors
