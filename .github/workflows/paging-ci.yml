@@ -13,7 +13,7 @@ env:
   PATH_PROJECT: src\Paging
   PATH_RELEASE: src\Paging\bin\Release
   PROJECT_NAME: Paging.csproj
-  PATH_TEST: tests\PagingTests
+  PATH_TEST: tests\Paging.Tests
 
 jobs:
   build:
@@ -26,8 +26,13 @@ jobs:
           dotnet-version: |
             8.x
             7.x
+            6.x
             2.1.x
             2.0.x
+            1.3.x
+            4.8.x
+            4.7.x
+            4.5.x
 #          cache: true
       - name: Restore dependencies
         run: dotnet restore
@@ -35,7 +40,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Debug
         working-directory: ${{ env.PATH_PROJECT }}
-  
+
   test:
     runs-on: windows-latest
     steps:
