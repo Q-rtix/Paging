@@ -254,7 +254,7 @@ public class StringBenchmark
 	[Benchmark]
 	public void Linq_PagedListShort()
 	{
-		PagedListShort.Select(x => x);
+		// PagedListShort.Select(x => x);
 	}
 
 	#endregion
@@ -505,7 +505,7 @@ public class StringBenchmark
 	[Benchmark]
 	public void Linq_PagedListLong()
 	{
-		PagedListLong.Select(x => x);
+		// PagedListLong.Select(x => x);
 	}
 
 	#endregion

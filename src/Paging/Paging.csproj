@@ -31,6 +31,10 @@
 	  <DocumentationFile>bin\Release\Paging.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net7.0' OR '$(TargetFramework)' == 'net6.0'">
+		<DefineConstants>SUPPORTS_JSON</DefineConstants>
+	</PropertyGroup>
+
 	<PropertyGroup Condition=" '$(TargetFramework)' != 'net8.0' AND '$(TargetFramework)' != 'net7.0' AND '$(TargetFramework)' != 'net6.0'">
 		<DefineConstants>DOES_NOT_SUPPORT_JSON</DefineConstants>
 	</PropertyGroup>

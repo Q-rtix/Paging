@@ -2,6 +2,7 @@
 using Paging.Pagers;
 
 #if DOES_NOT_SUPPORT_JSON
+using Newtonsoft.Json;
 #else
 using System.Text.Json.Serialization;
 #endif
@@ -14,8 +15,11 @@ namespace Paging.PagedCollections;
 /// <typeparam name="T">The type of items in the paged list.</typeparam>
 public sealed class PagedList<T> : Pager, IPagedList<T>
 {
-	[JsonInclude]
-	[JsonPropertyName("Items")]
+#if DOES_NOT_SUPPORT_JSON
+	[JsonProperty(propertyName:"Items")]
+#else
+	[JsonInclude, JsonPropertyName("Items")]
+#endif
 	private readonly T[] _dataset;
 
 	#region Constructors
@@ -25,8 +29,13 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	/// </summary>
 	/// <param name="pageSize">The number of items per page. Defaults to 10 if not specified.</param>
 	/// <returns>An empty instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class with the given <paramref name="pageSize"/>.</returns>
+#if DOES_NOT_SUPPORT_JSON
+	public static PagedList<T> Empty(int pageSize = 10)
+		=> new(new T[0], 1, pageSize);
+#else
 	public static PagedList<T> Empty(int pageSize = 10)
 		=> new(Array.Empty<T>(), 1, pageSize);
+#endif
 
 	/// <summary>
 	/// Creates an empty instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class based on the pager information.
@@ -34,8 +43,13 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	/// </summary>
 	/// <param name="pager">The pager containing information about the current page, page size, etc.</param>
 	/// <returns>An empty instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class based on the provided <paramref name="pager"/>.</returns>
+#if DOES_NOT_SUPPORT_JSON
+	public static PagedList<T> Empty(IPager pager)
+		=> new(new T[0], pager);	
+#else
 	public static PagedList<T> Empty(IPager pager)
 		=> new(Array.Empty<T>(), pager);
+#endif
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class with the provided <paramref name="dataSource"/>,

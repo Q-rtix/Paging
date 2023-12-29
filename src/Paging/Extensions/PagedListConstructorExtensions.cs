@@ -4,9 +4,9 @@ using Paging.Pagers;
 namespace Paging.Extensions;
 
 /// <summary>
-/// Provides extension methods for creating instances of the PagedList&lt;T&gt; class.
+/// Provides extension methods for creating instances of the PagedList class.
 /// </summary>
-public static class PagedListExtensions
+public static class PagedListConstructorExtensions
 {
 	/// <summary>
 	/// Create a new instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class with the provided <paramref name="dataSource"/>,
@@ -31,5 +31,4 @@ public static class PagedListExtensions
 	/// <exception cref="ArgumentNullException">Thrown when the <paramref name="dataSource"/> is null.</exception>
 	public static PagedList<T> Paginated<T>(this IEnumerable<T> dataSource, IPager pager)
 		=> new(dataSource, pager);
-	
 }

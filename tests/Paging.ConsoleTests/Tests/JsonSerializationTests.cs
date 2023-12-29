@@ -22,8 +22,10 @@ public static class JsonSerializationTests
 		var paged = list.Paginated(pager);
 
 #if DOES_NOT_SUPPORT_JSON
+		Console.WriteLine("Native Json not supported");
 		var json = JsonConvert.SerializeObject(paged);
 #else
+		Console.WriteLine("Native Json supported");
 		var json = JsonSerializer.Serialize(paged);
 #endif
 

@@ -1,14 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2d89bb1d_002D3672_002D4304_002Dad82_002D47d6a9afb424/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DirectIndexing_WithValidIndexes_ReturnsTheItemIndexed" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.ThisIndexTests.DirectIndexing_WithValidIndexes_ReturnsTheItemIndexed&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9289fc44_002Dfdcd_002D40ce_002D8166_002D931170756334/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ConstructorsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.ConstructorsTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.GetPagerDataTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::A77C3D96-BA31-4032-B7E6-008EADFD9280::net8.0::Paging.Tests.PagedCollections.PagedList.ThisIndexTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="E:\repos\personal\csharp\libs\Paging\tests\Paging.Tests" Presentation="&amp;lt;tests&amp;gt;\&amp;lt;Paging.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>
