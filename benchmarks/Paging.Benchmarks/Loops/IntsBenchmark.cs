@@ -5,7 +5,7 @@ using Paging.Tests;
 
 namespace Paging.Benchmarks.Loops;
 
-/*[MemoryDiagnoser(false)]
+[MemoryDiagnoser(false)]
 public class IntsBenchmark
 {
 	#region Short
@@ -511,4 +511,4 @@ public class IntsBenchmark
 	#endregion
 
 	#endregion
-}*/
+}

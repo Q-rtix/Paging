@@ -1,6 +1,10 @@
 ﻿using System.Collections;
-using System.Text.Json.Serialization;
 using Paging.Pagers;
+
+#if DOES_NOT_SUPPORT_JSON
+#else
+using System.Text.Json.Serialization;
+#endif
 
 namespace Paging.PagedCollections;
 
