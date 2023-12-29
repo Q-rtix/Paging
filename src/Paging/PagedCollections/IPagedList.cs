@@ -7,8 +7,7 @@ namespace Paging.PagedCollections;
 /// </summary>
 /// <typeparam name="T">The type of items in the paged list.</typeparam>
 public interface IPagedList<out T> :
-	IPager, 
-	IReadOnlyList<T>
+	IPager
 {
 	/// <summary>
 	/// Gets a value indicating whether the <see cref="T:Paging.PagedCollections.IPagedList`1" /> is empty based on the total item count.

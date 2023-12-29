@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Text.Json.Serialization;
 using Paging.Pagers;
 
 namespace Paging.PagedCollections;
@@ -9,6 +10,7 @@ namespace Paging.PagedCollections;
 /// <typeparam name="T">The type of items in the paged list.</typeparam>
 public sealed class PagedList<T> : Pager, IPagedList<T>
 {
+	[JsonInclude]
 	private readonly T[] _dataset;
 
 	#region Constructors
@@ -87,15 +89,6 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	/// </summary>
 	/// <returns>A copied data from the current <see cref="T:Paging.PagedCollections.PagedList`1" />.</returns>
 	public IPager GetPagerData() => new Pager(this);
-
-	/// <summary>
-	/// Returns an enumerator that iterates through the collection.
-	/// </summary>
-	/// <returns>A <see cref="T:System.Collections.Generic.List`1.Enumerator" /> for the <see cref="T:Paging.PagedCollections.PagedList`1" />.</returns>
-	IEnumerator IEnumerable.GetEnumerator()
-	{
-		return GetEnumerator();
-	}
 
 	/// <summary>
 	/// Returns an enumerator that iterates through the collection of items in the current page of the <see cref="T:Paging.PagedCollections.PagedList`1" />.
