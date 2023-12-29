@@ -10,7 +10,6 @@ namespace Paging.PagedCollections;
 public sealed class PagedList<T> : Pager, IPagedList<T>
 {
 	private readonly T[] _dataset;
-	private int _version = 0;
 
 	#region Constructors
 
@@ -124,13 +123,11 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 #nullable disable
 		private readonly PagedList<T> _list;
 		private int _index;
-		private readonly int _version;
 
 		internal Enumerator(PagedList<T> list)
 		{
 			_list = list;
 			_index = 0;
-			_version = list._version;
 			Current = default(T);
 		}
 
@@ -147,7 +144,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 		{
 			var list = _list;
 
-			if (_version != list._version || (uint)_index >= (uint)list.PageCount)
+			if ((uint)_index >= (uint)list.PageCount)
 				return MoveNextRare();
 
 			Current = list._dataset[_index];
@@ -157,9 +154,6 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 
 		private bool MoveNextRare()
 		{
-			if (_version != _list._version)
-				throw new InvalidOperationException("Invalid Operation Enumerator Failed Version");
-
 			_index = _list.PageCount + 1;
 			Current = default;
 			return false;
@@ -187,9 +181,6 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 		/// <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created.</exception>
 		void IEnumerator.Reset()
 		{
-			if (_version != _list._version)
-				throw new InvalidOperationException("Invalid Operation Enumerator Failed Version");
-
 			_index = 0;
 			Current = default;
 		}
