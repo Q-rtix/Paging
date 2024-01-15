@@ -9,7 +9,9 @@
           ]
         }
       ],
-      "dest": "api"
+      "dest": "api",
+      "allowCompilationErrors": true,
+      "outputFormat": "markdown"
     }
   ],
   "build": {
@@ -33,12 +35,14 @@
     "output": "_site",
     "template": [
       "default",
-      "modern"
+      "modern",
+      "./templates/inheritance-collapsed"
     ],
     "globalMetadata": {
-      "_appName": "Pgaing",
+      "_appName": "Home",
       "_appTitle": "Pgaing",
       "_enableSearch": true,
+      "_appFooter": "<span>Copyright © 2024 Qrtix <strong>Carlos J. Ortiz</strong></span>",
       "pdf": false
     }
   }
