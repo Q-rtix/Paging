@@ -35,14 +35,15 @@
     "output": "_site",
     "template": [
       "default",
-      "modern",
-      "./templates/inheritance-collapsed"
+      "modern"
     ],
     "globalMetadata": {
-      "_appName": "Home",
-      "_appTitle": "Pgaing",
+      "_appName": "Paging",
+      "_appTitle": "Paging",
       "_enableSearch": true,
-      "_appFooter": "<span>Copyright © 2024 Qrtix <strong>Carlos J. Ortiz</strong></span>",
+      "_appFooter": "<span>Copyright © 2024 <strong>Carlos J. Ortiz || Qrtix</strong></span>",
+      "_disableContribution": true,
+      "_lang": "EN",
       "pdf": false
     }
   }
