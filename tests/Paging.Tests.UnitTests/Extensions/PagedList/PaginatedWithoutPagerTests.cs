@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Paging.Extensions;
 
-namespace Paging.Tests.Extensions.PagedList;
+namespace Paging.Tests.UnitTests.Extensions.PagedList;
 
 public class PaginatedWithoutPagerTests
 {

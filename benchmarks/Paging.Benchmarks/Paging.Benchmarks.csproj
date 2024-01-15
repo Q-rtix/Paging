@@ -16,7 +16,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\Paging\Paging.csproj" />
-	  <ProjectReference Include="..\..\tests\Paging.Tests\Paging.Tests.csproj" />
+	  <ProjectReference Include="..\..\tests\Paging.Tests.UnitTests\Paging.Tests.UnitTests.csproj" />
 	</ItemGroup>
 
 </Project>

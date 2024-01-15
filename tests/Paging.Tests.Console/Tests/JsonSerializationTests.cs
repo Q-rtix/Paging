@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using System.Text.Json;
 #endif
 
-namespace Paging.ConsoleTests.Tests;
+namespace Paging.Tests.Console.Tests;
 
 public static class JsonSerializationTests
 {
@@ -22,14 +22,14 @@ public static class JsonSerializationTests
 		var paged = list.Paginated(pager);
 
 #if DOES_NOT_SUPPORT_JSON
-		Console.WriteLine("Native Json not supported");
+		System.Console.WriteLine("Native Json not supported");
 		var json = JsonConvert.SerializeObject(paged);
 #else
-		Console.WriteLine("Native Json supported");
+		System.Console.WriteLine("Native Json supported");
 		var json = JsonSerializer.Serialize(paged);
 #endif
 
-		Console.WriteLine(json);
+		System.Console.WriteLine(json);
 
 #if DOES_NOT_SUPPORT_JSON
 		var fromJson = JsonConvert.DeserializeObject<PagedList<int>>(json);
@@ -37,20 +37,20 @@ public static class JsonSerializationTests
 		var fromJson = JsonSerializer.Deserialize<PagedList<int>>(json);
 #endif
 
-		Console.WriteLine(fromJson!.PageCount);
-		Console.WriteLine(fromJson.Count);
-		Console.WriteLine(fromJson.PageNumber);
-		Console.WriteLine(fromJson.IsEmpty);
-		Console.WriteLine(fromJson.PageSize);
-		Console.WriteLine(fromJson.HasNextPage);
-		Console.WriteLine(fromJson.HasPreviousPage);
-		Console.WriteLine(fromJson.IsFirstPage);
-		Console.WriteLine(fromJson.IsLastPage);
-		Console.WriteLine(fromJson.TotalItemCount);
+		System.Console.WriteLine(fromJson!.PageCount);
+		System.Console.WriteLine(fromJson.Count);
+		System.Console.WriteLine(fromJson.PageNumber);
+		System.Console.WriteLine(fromJson.IsEmpty);
+		System.Console.WriteLine(fromJson.PageSize);
+		System.Console.WriteLine(fromJson.HasNextPage);
+		System.Console.WriteLine(fromJson.HasPreviousPage);
+		System.Console.WriteLine(fromJson.IsFirstPage);
+		System.Console.WriteLine(fromJson.IsLastPage);
+		System.Console.WriteLine(fromJson.TotalItemCount);
 
 		foreach (var item in fromJson)
 		{
-			Console.WriteLine(item);
+			System.Console.WriteLine(item);
 		}
 	}
 }

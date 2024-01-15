@@ -1,6 +1,6 @@
 ﻿using Paging.Pagers;
 
-namespace Paging.Tests;
+namespace Paging.Tests.UnitTests;
 
 public static class Lab
 {

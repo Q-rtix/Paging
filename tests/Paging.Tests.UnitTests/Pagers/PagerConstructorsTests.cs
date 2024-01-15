@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Paging.Pagers;
 
-namespace Paging.Tests.Pagers;
+namespace Paging.Tests.UnitTests.Pagers;
 
 public class PagerConstructorsTests
 {

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Paging.Extensions;
 
-namespace Paging.Tests.PagedCollections.PagedList;
+namespace Paging.Tests.UnitTests.PagedCollections.PagedList;
 
 public class ThisIndexTests
 {

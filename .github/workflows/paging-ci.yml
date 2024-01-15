@@ -13,7 +13,7 @@ env:
   PATH_PROJECT: src\Paging
   PATH_RELEASE: src\Paging\bin\Release
   PROJECT_NAME: Paging.csproj
-  PATH_TEST: tests\Paging.Tests
+  PATH_TEST: tests\Paging.Tests.UnitTests
 
 jobs:
   build:
