@@ -1,6 +1,7 @@
 .idea
 .vs
 .vscode
+_site/
 bin/
 obj/
 /packages/
