@@ -4,10 +4,16 @@ name: Github page deployment
 
 # Trigger the action on push to master
 on:
-  push:
-    branches: ["master", "github-page"]
-  pull_request:
-    branches: ["master", "github-page"]
+#  push:
+#    branches: ["master", "github-page"]
+#  pull_request:
+#    branches: ["master", "github-page"]
+  release: 
+    types:
+      - published
+      - created
+      - edited
+      - deleted
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
