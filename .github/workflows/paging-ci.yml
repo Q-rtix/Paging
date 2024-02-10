@@ -17,6 +17,7 @@ env:
 
 jobs:
   build:
+    name: Build Paging project
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,11 +37,23 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Debug
         working-directory: ${{ env.PATH_PROJECT }}
+      - name: Upload Paging artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: paging-lib
+          path: ${{ env.PATH_PROJECT }}
 
   test:
+    name: Run Paging tests
     runs-on: windows-latest
+    needs: build
     steps:
-      - uses: actions/checkout@v3
-      - name: Test
+      - name: Download Paging artifact
+        uses: actions/download-artifact@v3
+        with: 
+          name: paging-lib
+      - name: Test artifact download
+        run: ls -R
+      - name: Run Paging Tests
         run: dotnet test --verbosity normal
         working-directory: ${{ env.PATH_TEST }}
