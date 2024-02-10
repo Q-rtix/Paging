@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: paging-lib
-          path: ${{ env.PATH_PROJECT }}
+          path: src
 
   test:
     name: Run Paging tests
