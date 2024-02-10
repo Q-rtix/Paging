@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: paging-lib
-          path: Paging
+          path: .
 
   test:
     name: Run Paging tests
