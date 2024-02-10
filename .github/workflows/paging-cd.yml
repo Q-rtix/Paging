@@ -1,0 +1,79 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Paged List CD
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  PATH_PROJECT: src\Paging
+  PATH_RELEASE: src\Paging\bin\Release
+  PROJECT_NAME: Paging.csproj
+
+jobs:
+  build:
+    name: Build Paging project
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.x
+            7.x
+            6.x
+            2.1.x
+            2.0.x
+#          cache: true
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: ${{ env.PATH_PROJECT }}
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+        working-directory: ${{ env.PATH_PROJECT }}
+      - name: Create NuGet Package
+        run: dotnet pack ${{ env.PROJECT_NAME }} --no-build -c Release
+        working-directory: ${{ env.PATH_PROJECT }}
+      - name: Upload Paging artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: paging-lib
+          path: .
+
+  publish:
+    name: Publish Paging lib
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: Download Paging artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: paging-lib
+      - name: Test artifact download
+        run: ls -R
+      - name: Publish into NuGet
+        run: dotnet nuget push *.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+        working-directory: ${{ env.PATH_RELEASE }}
+      - name: Publish into Github Packages
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: dotnet nuget push *.nupkg --skip-duplicate --api-key ${{ secrets.GH_TOKEN }} --source https://nuget.pkg.github.com/Qrtix769/index.json
+        working-directory: ${{ env.PATH_RELEASE }}
+      - name: Create Release in Github
+        env: 
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: | 
+          $xml = [xml](Get-Content ${{env.PROJECT_NAME}})
+          $version = $xml.Project.PropertyGroup.Version
+          $notes = $xml.Project.PropertyGroup.PackageReleaseNotes
+          $repo = $env:GITHUB_REPOSITORY
+          gh release create "v$version" -t "${{ env.REPO_NAME}}-v${version}" -n "${notes}" -R "$repo"
+          Compress-Archive -Path ".\bin\Release\*" -DestinationPath ".\bin\Release\${{ env.REPO_NAME }}-v${version}.zip"
+          gh release upload "v${version}" .\bin\Release\${{ env.REPO_NAME }}-v${version}.zip --clobber
+        working-directory: ${{ env.PATH_PROJECT }}

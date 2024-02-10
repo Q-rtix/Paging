@@ -1,0 +1,59 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Paged List CI
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+env:
+  PATH_PROJECT: src\Paging
+  PATH_RELEASE: src\Paging\bin\Release
+  PROJECT_NAME: Paging.csproj
+  PATH_TEST: tests\Paging.Tests.UnitTests
+
+jobs:
+  build:
+    name: Build Paging project
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.x
+            7.x
+            6.x
+            2.1.x
+            2.0.x
+#          cache: true
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: ${{ env.PATH_PROJECT }}
+      - name: Build
+        run: dotnet build --no-restore --configuration Debug
+        working-directory: ${{ env.PATH_PROJECT }}
+      - name: Upload Paging artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: paging-lib
+          path: .
+
+  test:
+    name: Run Paging tests
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: Download Paging artifact
+        uses: actions/download-artifact@v3
+        with: 
+          name: paging-lib
+      - name: Test artifact download
+        run: ls -R
+      - name: Run Paging Tests
+        run: dotnet test --verbosity normal
+        working-directory: ${{ env.PATH_TEST }}

@@ -1,0 +1,50 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../src",
+          "files": [
+            "**/*.csproj"
+          ]
+        }
+      ],
+      "dest": "api",
+      "allowCompilationErrors": true,
+      "outputFormat": "markdown"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "Paging",
+      "_appTitle": "Paging",
+      "_enableSearch": true,
+      "_appFooter": "<span>Copyright © 2024 <strong>Carlos J. Ortiz || Qrtix</strong></span>",
+      "_disableContribution": true,
+      "_lang": "EN",
+      "pdf": false
+    }
+  }
+}

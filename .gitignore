@@ -1,8 +1,10 @@
 .idea
 .vs
 .vscode
+_site/
 bin/
 obj/
+docs/api/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/

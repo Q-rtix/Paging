@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<LangVersion>default</LangVersion>
+		<SignAssembly>true</SignAssembly>
+		
+		<OutputType>Exe</OutputType>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="BenchmarkDotNet" Version="0.13.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\Paging\Paging.csproj" />
+	  <ProjectReference Include="..\..\tests\Paging.Tests.UnitTests\Paging.Tests.UnitTests.csproj" />
+	</ItemGroup>
+
+</Project>

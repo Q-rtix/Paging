@@ -1,0 +1,7 @@
+@Paging.WebApplicationTest_HostAddress = http://localhost:5084
+
+GET {{Paging.WebApplicationTest_HostAddress}}/paging?pageNumber=1&pageSize=10
+Accept: application/json
+
+
+###
