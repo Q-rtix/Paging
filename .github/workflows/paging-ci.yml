@@ -38,6 +38,7 @@ jobs:
         working-directory: ${{ env.PATH_PROJECT }}
 
   test:
+    needs: build
     runs-on: windows-latest
     steps:
       - name: Test

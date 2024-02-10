@@ -39,6 +39,7 @@ jobs:
         run: dotnet pack ${{ env.PROJECT_NAME }} --no-build -c Release
         working-directory: ${{ env.PATH_PROJECT }}
   publish:
+    needs: build
     runs-on: windows-latest
     steps:
       - name: Publish into NuGet
