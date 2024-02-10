@@ -55,5 +55,5 @@ jobs:
       - name: Test artifact download
         run: ls -R
       - name: Run Paging Tests
-        run: dotnet test --verbosity normal
+        run: dotnet test --no-build --verbosity normal
         working-directory: ${{ env.PATH_TEST }}
