@@ -4,6 +4,7 @@
 _site/
 bin/
 obj/
+docs/api/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/

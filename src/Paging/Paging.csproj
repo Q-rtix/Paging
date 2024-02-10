@@ -7,7 +7,7 @@
 		<LangVersion>default</LangVersion>
 		<SignAssembly>true</SignAssembly>
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
-		<Authors>Qrtix</Authors>
+		<Authors>Carlos J. Ortiz</Authors>
 		<Description># This library provides functionality for implementing paged lists.</Description>
 		<RepositoryUrl>https://github.com/Qrtix769/Paging</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>

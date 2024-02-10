@@ -17,7 +17,6 @@ env:
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
@@ -30,9 +29,6 @@ jobs:
             2.1.x
             2.0.x
             1.3.x
-            4.8.x
-            4.7.x
-            4.5.x
 #          cache: true
       - name: Restore dependencies
         run: dotnet restore
@@ -43,6 +39,9 @@ jobs:
       - name: Create NuGet Package
         run: dotnet pack ${{ env.PROJECT_NAME }} --no-build -c Release
         working-directory: ${{ env.PATH_PROJECT }}
+  publish:
+    runs-on: windows-latest
+    steps:
       - name: Publish into NuGet
         run: dotnet nuget push *.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
         working-directory: ${{ env.PATH_RELEASE }}

@@ -1,109 +1,104 @@
-# Pagination Library 
+# Paging Library
 
-This C# library provides functionality for implementing paginated lists.
+This C# library provides functionality for implementing paged lists.
+Consult the online [documentation]() for more details.
 
-## Table Of Contents
+- [Getting Started](#getting-started)
+- [Using PagedList](#using-pagedlist)
+- [Contributing](#contributing)
 
-- [Installation](#installation)
-- [PaginatedList<T> Class](#paginatedlistt-class)
-  - [Properties](#properties)
-  - [Constructors](#constructors)
-- [PaginatedListExtensions Class](#paginatedlistextension-class)
-  - [Static Methods](#static-methods)
-- [How to use the `PaginatedList<T>` class](#how-to-use-the-paginatedlistt-class)
 
-## Installation
+## Getting Started
 
 Using the NuGet package manager console within Visual Studio run the following command:
 
 ```
-Install-Package QDev.CSharp.Pagination.PaginatedList
+Install-Package Qrtix.Paging
 ```
 
 Or using the .NET Core CLI from a terminal window:
 
 ```
-dotnet add package QDev.CSharp.Pagination.PaginatedList
+dotnet add package Qrtix.Paging
 ```
 
-## PaginatedList<T> Class
+## Using PagedList
 
-Represents a paginated list of items.
+The `PagedList` class in the Qrtix.Paging library provides a convenient way to paginate large collections of data efficiently. Here's how you can use it:
 
-### Properties
-
-| Property          | Description                                                             |
-|-------------------|-------------------------------------------------------------------------|
-| `PageIndex`       | Gets the current index page.                                            |
-| `TotalPages`      | Gets the total number of pages.                                         |
-| `TotalCount`      | Gets the total number of items.                                         |
-| `HasPreviousPage` | Gets a value indicating whether the paginated list has a previous page. |
-| `HasNextPage`     | Gets a value indicating whether the paginated list has a next page.     |
-
-### Constructors
-
-| Constructor                                                                   | Description                                                 |
-|-------------------------------------------------------------------------------|-------------------------------------------------------------|
-| `PaginatedList(IEnumerable<T> items, int count, int pageIndex, int pageSize)` | Initializes a new instance of the `PaginatedList<T>` class. |
-
-#### Example
-```csharp
-var items = GetList(); // this return a huge list of items of intergers
-var paginatedList = new PaginatedList<int>(items, count, pageIndex, pageSize);
-```
-
-## PaginatedListExtension Class
-
-### Static Methods
-
-| Method                                                                                                | Description                                                            |
-|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| `Create(IQueryable<T> source, int pageIndex, int pageSize)`                                           | Creates a new instance of the `PaginatedList<T>` class.                |
-| `CreateAsync(IQueryable<T> source, int pageIndex, int pageSize, CancellationToken cancellationToken)` | Asynchronously creates a new instance of the `PaginatedList<T>` class. |
-
-> **Note:** Replace `T` with the actual type of the items you want to paginate.
-
-#### Example
-```csharp
-var items = GetList(); // this return a huge list of items of intergers
-var paginatedList = PaginatedList<int>.Create(source, pageIndex, pageSize);
-var paginatedListAsync = await PaginatedList<int>.CreateAsync(source, pageIndex, pageSize, cancellationToken);
-```
-
-### How to use the `PaginatedList<T>` class
-
-Here's an example of how to use the `PaginatedList<T>` class:
+### Instantiate a PagedList:
 
 ```csharp
-// Create a sample list of items
-var items = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+// Assuming you have a list of items named 'sourceList' and a page size of 10
+var pagedList = new PagedList<T>(sourceList, pageNumber, pageSize);
+```
 
-// Set the pagination parameters
-int pageIndex = 1;
-int pageSize = 3;
+### Access Paginated Data:
 
-// Create a paginated list
-var pl1 = new PaginatedList<int>(items, pageIndex, pageSize); // using the constructor
-var pl2 = items.ToPaginatedList(pageIndex, pageSize); // using the `ToPaginatedList` extension method
+You can access the data in the paged list using indexers or enumeration:
 
-// Access the paginated list properties
-Console.WriteLine($"Page {pl1.PageIndex} of {pl1.TotalPages}");
-Console.WriteLine($"Total Items: {pl1.TotalCount}");
+```csharp
+// Accessing items using indexer
+var item = pagedList[index];
 
-// Iterate through the paginated list
-foreach (var item in pl1)
+// Enumerating through the paged list
+foreach (var item in pagedList)
 {
-    Console.WriteLine(item);
+    // Process each item
 }
 
-// Check if the paginated list has a previous or next page
-if (pl1.HasPreviousPage)
+// Using for loop
+for (int i = 0; i < pagedList.Count; i++)
 {
-    Console.WriteLine("Has Previous Page");
-}
-
-if (pl1.HasNextPage)
-{
-    Console.WriteLine("Has Next Page");
+    var item = pagedList[i];
+    // Process each item
 }
 ```
+
+### Retrieve Pagination Information:
+
+You can also retrieve pagination-related information such as the total number of pages, total items, etc.:
+
+```csharp
+// Total number of items
+var totalItems = pagedList.TotalItemCount;
+
+// Total number of pages
+var totalPages = pagedList.PageCount;
+
+// Current page number
+var currentPage = pagedList.PageNumber;
+
+// Page size
+var pageSize = pagedList.PageSize;
+```
+
+## Contributing
+
+**Did you find a bug?**
+
+- Ensure the bug was not already reported by searching on GitHub
+  under [Issues](https://github.com/Qrtix769/Paging/issues).
+- If you're unable to find an open issue addressing the
+  problem, [open a new one](https://github.com/Qrtix769/Paging/issues/new). Be sure to include a title and clear
+  description, as much relevant information as possible, and a code sample or an executable test case demonstrating the
+  expected behavior that is not occurring.
+
+**Did you write a patch that fixes a bug?**
+
+- Open a new GitHub pull request with the patch.
+- Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
+
+**Do you intend to add a new feature or change an existing one?**
+
+- First suggest your change in the [Paging ideas page](https://github.com/Qrtix769/Paging/discussions/categories/ideas)
+  for discussion.
+- There are no fixed rules on what should and shouldn't be in this library, but some features are more valuable than
+  others, and some require long-term maintenance that outweighs the value of the feature. So please get sign-off from
+  the
+  project leader (Carlos J. Ortiz) before putting in an excessive amount of work.
+
+**Do you have questions about the source code?**
+
+- Ask any question about how to use Paging in
+  the [Paging discussion page](https://github.com/Qrtix769/Paging/discussions/new?category=q-a).

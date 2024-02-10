@@ -61,7 +61,7 @@ public sealed class PagedList<T> : Pager, IPagedList<T>
 	}
 
 	/// <summary>
-	/// Initializes a new instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class with the provided
+	/// Initializes a new instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class with the provided 
 	/// <paramref name="dataSource"/> and <paramref name="pager"/>.
 	/// Constructs the paged list by retrieving the items for the specified page from the data source.
 	/// </summary>
