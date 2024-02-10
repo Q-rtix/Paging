@@ -38,6 +38,12 @@ jobs:
       - name: Create NuGet Package
         run: dotnet pack ${{ env.PROJECT_NAME }} --no-build -c Release
         working-directory: ${{ env.PATH_PROJECT }}
+      - name: Add git tag
+        run: |
+          $xml = [xml](Get-Content ${{env.PROJECT_NAME}})
+          $version = $xml.Project.PropertyGroup.Version
+          git tag "v${version}"
+        working-directory: ${{ env.PATH_PROJECT }}
   publish:
     needs: build
     runs-on: windows-latest

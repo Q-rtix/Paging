@@ -38,9 +38,9 @@ jobs:
         working-directory: ${{ env.PATH_PROJECT }}
 
   test:
-    needs: build
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Test
         run: dotnet test --no-build --verbosity normal
         working-directory: ${{ env.PATH_TEST }}
