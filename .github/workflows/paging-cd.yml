@@ -42,7 +42,7 @@ jobs:
         run: |
           $xml = [xml](Get-Content ${{env.PROJECT_NAME}})
           $version = $xml.Project.PropertyGroup.Version
-          git tag v${version}
+          git tag v$version
         working-directory: ${{ env.PATH_PROJECT }}
       - name: Publish into NuGet
         run: dotnet nuget push *.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json

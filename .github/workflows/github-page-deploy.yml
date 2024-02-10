@@ -6,6 +6,8 @@ name: Github page deployment
 on:
   push:
     branches: ["master", "github-page"]
+  pull_request:
+    branches: ["master", "github-page"]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
