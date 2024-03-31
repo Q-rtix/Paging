@@ -9,7 +9,7 @@
 		<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 		<Authors>Carlos J. Ortiz</Authors>
 		<Description># This library provides functionality for implementing paged lists.</Description>
-		<RepositoryUrl>https://github.com/Qrtix769/Paging</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Q-rtix/Paging</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Title>Pagination</Title>
 		<Version>1.0.0</Version>
@@ -20,7 +20,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>Pagination PaginatedList PagedList List Pager Paged Paging</PackageTags>
 		<Copyright>Copyright (c) Carlos J. Ortiz. All rights reserved.</Copyright>
-		<PackageProjectUrl>https://github.com/users/Qrtix769/projects/1</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/users/Q-rtix/projects/1</PackageProjectUrl>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

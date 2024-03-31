@@ -62,7 +62,7 @@ jobs:
       - name: Publish into Github Packages
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: dotnet nuget push *.nupkg --skip-duplicate --api-key ${{ secrets.GH_TOKEN }} --source https://nuget.pkg.github.com/Qrtix769/index.json
+        run: dotnet nuget push *.nupkg --skip-duplicate --api-key ${{ secrets.GH_TOKEN }} --source https://nuget.pkg.github.com/Q-rtix/index.json
         working-directory: ${{ env.PATH_RELEASE }}
       - name: Create Release in Github
         env: 
