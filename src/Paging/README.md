@@ -91,7 +91,7 @@ var pageSize = pagedList.PageSize;
 
 **Do you intend to add a new feature or change an existing one?**
 
-- First suggest your change in the [Paging ideas page](https://github.com/Qrtix769/Paging/discussions/categories/ideas)
+- First suggest your change in the [Paging ideas page](https://github.com/Q-rtix/Paging/discussions/categories/ideas)
   for discussion.
 - There are no fixed rules on what should and shouldn't be in this library, but some features are more valuable than
   others, and some require long-term maintenance that outweighs the value of the feature. So please get sign-off from
