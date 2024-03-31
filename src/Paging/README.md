@@ -1,6 +1,7 @@
 # Paging Library
 
 This C# library provides functionality for implementing paged lists.
+
 Consult the online [documentation](https://q-rtix.github.io/Paging/) for more details.
 
 - [Getting Started](#getting-started)
