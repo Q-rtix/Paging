@@ -1,5 +1,8 @@
 # Paging Library
 
+![NuGet Version](https://img.shields.io/nuget/v/Qrtix.Paging?logo=nuget)
+![GitHub Repo stars](https://img.shields.io/github/stars/Q-rtix/Paging?style=flat&logo=github)
+
 This C# library provides functionality for implementing paged lists.
 
 Consult the online [documentation](https://q-rtix.github.io/Paging/) for more details.
