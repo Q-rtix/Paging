@@ -4,7 +4,8 @@ _layout: landing
 
 # Introduction
 
-![NuGet Version](https://img.shields.io/nuget/v/Qrtix.Paging)
+![NuGet Version](https://img.shields.io/nuget/v/Qrtix.Paging?logo=nuget)
+![GitHub Repo stars](https://img.shields.io/github/stars/Q-rtix/Paging?style=flat&logo=github)
 
 The **Qrtix.Paging** library provides a robust solution for managing paginated collections of items in .NET
 applications. Pagination is a common requirement in software development, especially for applications dealing with large
