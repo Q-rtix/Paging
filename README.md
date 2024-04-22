@@ -1,6 +1,7 @@
 # Paging Library
 
 ![NuGet Version](https://img.shields.io/nuget/v/Qrtix.Paging?logo=nuget)
+![NuGet Downloads](https://img.shields.io/nuget/dt/Qrtix.Paging?style=flat&logo=nuget)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Q-rtix/Paging?style=flat&logo=github)
 
 - [Getting Started](#getting-started)
