@@ -6,8 +6,6 @@ name: Paged List CD
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 env:
   PATH_PROJECT: src\Paging
