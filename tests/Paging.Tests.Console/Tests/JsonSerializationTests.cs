@@ -1,5 +1,4 @@
 ﻿using Paging.Extensions;
-using Paging.PagedCollections;
 using Paging.Pagers;
 
 #if DOES_NOT_SUPPORT_JSON

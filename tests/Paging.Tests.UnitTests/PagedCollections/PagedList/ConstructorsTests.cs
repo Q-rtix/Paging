@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Paging.PagedCollections;
 using Paging.Pagers;
 
 namespace Paging.Tests.UnitTests.PagedCollections.PagedList;

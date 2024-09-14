@@ -1,4 +1,4 @@
-﻿namespace Paging.Pagers;
+﻿namespace Paging.Abstractions;
 
 /// <summary>
 /// Represents a pager that handles pagination logic.
