@@ -1,6 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Paging.Extensions;
-using Paging.PagedCollections;
 using Paging.Tests.UnitTests;
 
 namespace Paging.Benchmarks.Loops;

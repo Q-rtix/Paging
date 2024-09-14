@@ -1,4 +1,4 @@
-﻿using Paging.PagedCollections;
+﻿using Paging.Abstractions;
 using Paging.Pagers;
 
 namespace Paging.Extensions;
@@ -18,8 +18,7 @@ public static class PagedListConstructorExtensions
 	/// <param name="pageNumber">The current page number.</param>
 	/// <param name="pageSize">The number of items per page.</param>
 	/// <exception cref="ArgumentNullException">Thrown when the <paramref name="dataSource"/> is null.</exception>
-	public static PagedList<T> Paginated<T>(this IEnumerable<T> dataSource, int pageNumber, int pageSize) 
-		=> new(dataSource, pageNumber, pageSize);
+	public static PagedList<T> Paginated<T>(this IEnumerable<T> dataSource, int pageNumber, int pageSize) => new PagedList<T>(dataSource, pageNumber, pageSize);
 	
 	/// <summary>
 	/// Create a new instance of the <see cref="T:Paging.PagedCollections.PagedList`1" /> class with the provided
@@ -29,6 +28,5 @@ public static class PagedListConstructorExtensions
 	/// <param name="dataSource">The collection of items to paginate.</param>
 	/// <param name="pager">The pager containing information about the current page, page size, etc.</param>
 	/// <exception cref="ArgumentNullException">Thrown when the <paramref name="dataSource"/> is null.</exception>
-	public static PagedList<T> Paginated<T>(this IEnumerable<T> dataSource, IPager pager)
-		=> new(dataSource, pager);
+	public static PagedList<T> Paginated<T>(this IEnumerable<T> dataSource, IPager pager) => new PagedList<T>(dataSource, pager);
 }
