@@ -12,11 +12,13 @@
 		<RepositoryUrl>https://github.com/Q-rtix/Paging</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Title>Pagination</Title>
+
 		<Version>2.0.0</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryType>git</RepositoryType>
 		<PackageId>Qrtix.Paging</PackageId>
 		<PackageReleaseNotes>Add new extensions methods to paginate</PackageReleaseNotes>
+
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>Pagination PaginatedList PagedList List Pager Paged Paging</PackageTags>
 		<Copyright>Copyright (c) Carlos J. Ortiz. All rights reserved.</Copyright>
