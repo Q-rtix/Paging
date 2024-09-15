@@ -15,7 +15,7 @@ public class IntsBenchmark
 	private static readonly IEnumerable<int> EnumerableShort = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 	private static readonly PagedList<int> PagedListShort =
-		Lab.DataSources.IntegerLists.Items50.Paginated(Lab.DataSources.Pagers.PageNumberFirst);
+		Lab.DataSources.IntegerLists.Items50.Paginate(Lab.DataSources.Pagers.PageNumberFirst);
 
 
 	#region While
@@ -266,7 +266,7 @@ public class IntsBenchmark
 	private static readonly int[] ArrayLong = EnumerableLong.ToArray();
 	private static readonly List<int> ListLong = EnumerableLong.ToList();
 	private static readonly IQueryable<int> QueryLong = EnumerableLong.AsQueryable();
-	private static readonly PagedList<int> PagedListLong = EnumerableLong.Paginated(1, 100);
+	private static readonly PagedList<int> PagedListLong = EnumerableLong.Paginate(1, 100);
 
 
 	#region While

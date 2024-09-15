@@ -11,7 +11,7 @@ public class ThisIndexTests
 	{
 		// Arrange 
 		var list = Lab.DataSources.IntegerLists.Items50;
-		var pagedList = list.Paginated(Lab.DataSources.Pagers.PageNumberFirst);
+		var pagedList = list.Paginate(Lab.DataSources.Pagers.PageNumberFirst);
 		
 		// Act
 		var item = pagedList[index];
@@ -25,7 +25,7 @@ public class ThisIndexTests
 	public void DirectIndexing(int index)
 	{
 		// Arrange 
-		var pagedList = Lab.DataSources.IntegerLists.Items50.Paginated(Lab.DataSources.Pagers.PageNumberFirst);
+		var pagedList = Lab.DataSources.IntegerLists.Items50.Paginate(Lab.DataSources.Pagers.PageNumberFirst);
 		
 		// Act
 		var act = () =>
