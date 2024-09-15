@@ -15,7 +15,7 @@ public class StringBenchmark
 	private static readonly IQueryable<string> QueryShort = EnumerableShort.AsQueryable();
 
 	private static readonly PagedList<string> PagedListShort =
-		EnumerableShort.Paginated(Lab.DataSources.Pagers.PageNumberFirst);
+		EnumerableShort.Paginate(Lab.DataSources.Pagers.PageNumberFirst);
 
 
 	#region While
@@ -266,7 +266,7 @@ public class StringBenchmark
 	private static readonly string[] ArrayLong = EnumerableLong.ToArray();
 	private static readonly List<string> ListLong = EnumerableLong.ToList();
 	private static readonly IQueryable<string> QueryLong = EnumerableLong.AsQueryable();
-	private static readonly PagedList<string> PagedListLong = EnumerableLong.Paginated(1, 100);
+	private static readonly PagedList<string> PagedListLong = EnumerableLong.Paginate(1, 100);
 
 
 	#region While

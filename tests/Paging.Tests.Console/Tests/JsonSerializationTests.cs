@@ -18,17 +18,21 @@ public static class JsonSerializationTests
 			25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
 		};
 		var pager = new Pager(1, 10, 50);
-		var paged = list.Paginated(pager);
+		var page1 = list.Paginate(pager);
+		var page2 = list.Paginate(2, 10);
 
 #if DOES_NOT_SUPPORT_JSON
 		System.Console.WriteLine("Native Json not supported");
-		var json = JsonConvert.SerializeObject(paged);
+		var json = JsonConvert.SerializeObject(page1);
+		var json2 = JsonConvert.SerializeObject(page2);
 #else
 		System.Console.WriteLine("Native Json supported");
-		var json = JsonSerializer.Serialize(paged);
+		var json = JsonSerializer.Serialize(page1);
+		var json2 = JsonSerializer.Serialize(page2);
 #endif
 
 		System.Console.WriteLine(json);
+		System.Console.WriteLine(json2);
 
 #if DOES_NOT_SUPPORT_JSON
 		var fromJson = JsonConvert.DeserializeObject<PagedList<int>>(json);

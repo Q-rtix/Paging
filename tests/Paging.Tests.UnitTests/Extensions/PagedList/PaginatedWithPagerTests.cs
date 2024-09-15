@@ -9,7 +9,7 @@ public class PaginatedWithPagerTests
 	public void Paginated()
 	{
 		// Act
-		var pagedList = Lab.DataSources.IntegerLists.Items50.Paginated(Lab.DataSources.Pagers.PageNumberFirst);
+		var pagedList = Lab.DataSources.IntegerLists.Items50.Paginate(Lab.DataSources.Pagers.PageNumberFirst);
 		
 		// Assert
 		pagedList.PageNumber.Should().Be(1);
